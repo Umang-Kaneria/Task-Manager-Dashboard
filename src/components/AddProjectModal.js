@@ -10,7 +10,6 @@ const AddProjectModal = ({ open, onClose, onSuccess, userId }) => {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [taskLoading, setTaskLoading] = useState(false);
   const { tasks, fetchTasks } = useTaskStore();
-  console.log({tasks, userId});
   const { addProject } = useProjectStore();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');

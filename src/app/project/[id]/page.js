@@ -28,11 +28,9 @@ const ProjectDetailPage = () => {
 
   useEffect(() => {
     if (projects && id) {
-      console.log({projects, id});
       const found = projects.find(p => String(p.id) === String(id));
       setProject(found);
       if (found && found.tasks && tasks) {
-        console.log({tasks, taskssss: tasks.filter(t => found.tasks.includes(t.id))});
         setProjectTasks(tasks.filter(t => found.tasks.includes(t.id)));
       }
     }

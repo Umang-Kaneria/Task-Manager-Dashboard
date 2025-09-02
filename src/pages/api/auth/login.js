@@ -7,10 +7,8 @@ export default async function handler(req, res) {
   }
   const { email, password } = req.body;
   try {
-    console.log({email, password})
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    console.log({userCredential})
     // Optionally, create a session/cookie here
     res.status(200).json({
       uid: user.uid,
