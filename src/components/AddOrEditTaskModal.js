@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Button from './Button';
 
 const statusOptions = [
-  { title: 'Todo', value: 'todo' },
-  { title: 'In Progress', value: 'in_progress' },
-  { title: 'Done', value: 'done' },
+  { title: 'Todo', value: 'Todo' },
+  { title: 'In Progress', value: 'In Progress' },
+  { title: 'Done', value: 'Done' },
 ];
 
-const AddOrEditTaskModal = ({ open, onClose, onSubmit, initialTitle = '', initialStatus = 'todo', loading = false }) => {
+const AddOrEditTaskModal = ({ open, onClose, onSubmit, initialTitle = '', initialStatus = 'Todo', loading = false }) => {
   const [title, setTitle] = useState(initialTitle);
   const [status, setStatus] = useState(initialStatus);
 
