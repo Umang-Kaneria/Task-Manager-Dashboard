@@ -9,7 +9,20 @@ import Card from '../../../components/Card';
 import PageContainer from '../../../components/PageContainer';
 
 const TaskDetailPage = () => {
-  const { updateTask } = useTaskStore();
+  const { updateTask, deleteTask } = useTaskStore();
+  const [deleting, setDeleting] = useState(false);
+  const handleDelete = async () => {
+    if (!task) return;
+    setDeleting(true);
+    try {
+      await deleteTask(task.id);
+      router.push('/');
+    } catch (err) {
+      alert('Failed to delete task.');
+    } finally {
+      setDeleting(false);
+    }
+  };
   const [editMode, setEditMode] = useState(false);
   const [editTitle, setEditTitle] = useState('');
   const [editStatus, setEditStatus] = useState('todo');
@@ -95,7 +108,16 @@ const TaskDetailPage = () => {
         </Card>
       ) : (
         <Card name={task.title} description={task.status}>
-          <button className="mt-4 text-blue-500" onClick={() => setEditMode(true)}>Edit</button>
+          <div className="flex gap-2 mt-4">
+            <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={() => setEditMode(true)}>Edit</button>
+            <button
+              className="px-4 py-2 bg-red-500 text-white rounded"
+              onClick={handleDelete}
+              disabled={deleting}
+            >
+              {deleting ? 'Deleting...' : 'Delete'}
+            </button>
+          </div>
         </Card>
       )}
     </PageContainer>
